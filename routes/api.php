@@ -23,3 +23,6 @@ Route::apiResource('categories', 'App\Http\Controllers\CategoryController');
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('jwt.auth');
 
+
+
+

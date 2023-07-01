@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -11,7 +11,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return response()->json(['categories' => $categories]);
     }
 
     /**
@@ -19,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -27,7 +28,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->input('name');
+        // Outros atributos da categoria...
+
+        $category->save();
+
+        return response()->json($category);
     }
 
     /**
@@ -35,7 +42,13 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
+        return response()->json($category);
     }
 
     /**
@@ -43,7 +56,13 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -51,7 +70,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
+        $category->name = $request->input('name');
+        // Outros atributos da categoria...
+
+        $category->save();
+
+        return response()->json($category);
     }
 
     /**
@@ -59,6 +89,14 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
+        $category->delete();
+
+        return response()->json(['message' => 'Categoria removida com sucesso']);
     }
 }
