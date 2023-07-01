@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -19,20 +20,34 @@ class ProductController extends Controller
 
     /**
      * Store a newly created product in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $product = Product::create([
-        'name' => 'Product Test',
-        'price' => 9.99,
-        'category_id' => 1, // ID da categoria associada ao produto
-    ]);
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required|numeric',
+            'category_id' => 'required|integer'
+        ]);
 
-    return response()->json($product, 201);
-}
+        // Create a new category if the provided category_id does not exist
+        if (!Category::find($validatedData['category_id'])) {
+            $category = Category::create(['name' => 'Nova Categoria']);
+            $validatedData['category_id'] = $category->id;
+        }
+
+        $product = Product::create($validatedData);
+
+        return response()->json($product, 201);
+    }
 
     /**
      * Display the specified product.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
     {
@@ -41,6 +56,10 @@ class ProductController extends Controller
 
     /**
      * Update the specified product in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
     {
@@ -51,6 +70,9 @@ class ProductController extends Controller
 
     /**
      * Remove the specified product from storage.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
     {
