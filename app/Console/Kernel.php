@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\CreateUserCommand; // Adicione a importação do seu comando personalizado
 
 class Kernel extends ConsoleKernel
 {
@@ -22,6 +23,7 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__.'/Commands');
 
-        require base_path('routes/console.php');
+        // Registre o seu comando personalizado
+        $this->registerCommand(CreateUserCommand::class);
     }
 }
