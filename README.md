@@ -1,66 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Meu Projeto PHP
+Este é o meu projeto PHP, uma API de teste desenvolvida com o framework Laravel, utilizando um banco de dados MySQL. Além disso, foi desenvolvido um frontend utilizando o Angular.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Configuração do Ambiente
+Siga as instruções abaixo para configurar o ambiente e iniciar o servidor local.
 
-## About Laravel
+Servidor Laravel
+Certifique-se de ter o PHP instalado em seu ambiente. Você pode verificar digitando o seguinte comando no terminal:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+php --version
+Se o PHP não estiver instalado, consulte a documentação oficial do PHP para obter instruções de instalação adequadas ao seu sistema operacional.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Clone este repositório em sua máquina local:
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+git clone https://github.com/rafasdiass/backphp.git
+Navegue até o diretório do projeto:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+cd meu-projeto-php
+Instale as dependências do Composer:
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+composer install
+Copie o arquivo .env.example e renomeie-o para .env:
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+cp .env.example .env
+Gere uma nova chave de aplicativo executando o seguinte comando:
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+php artisan key:generate
+Configure as informações de conexão do banco de dados no arquivo .env. Certifique-se de fornecer as credenciais corretas para se conectar ao seu banco de dados MySQL.
 
-## Code of Conduct
+Execute as migrações do banco de dados para criar as tabelas necessárias:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+php artisan migrate
+Inicie o servidor de desenvolvimento:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+php artisan serve
+O servidor estará em execução em http://localhost:8000.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Banco de Dados MySQL
+Certifique-se de ter o MySQL instalado em seu ambiente. Você pode verificar digitando o seguinte comando no terminal:
+
+
+mysql --version
+Se o MySQL não estiver instalado, consulte a documentação oficial do MySQL para obter instruções de instalação adequadas ao seu sistema operacional.
+
+Inicie o servidor MySQL.
+
+Crie um novo banco de dados para a aplicação.
+
+No arquivo .env, defina as informações de conexão do banco de dados, como nome do banco de dados, usuário e senha.
+
+Execute as migrações do banco de dados para criar as tabelas necessárias:
+
+
+php artisan migrate
+Frontend Angular
+Para executar o frontend Angular, siga as instruções abaixo:
+
+Certifique-se de ter o Node.js e o Angular CLI instalados em seu ambiente. Você pode verificar digitando os seguintes comandos no terminal:
+
+
+node --version
+ng --version
+Se o Node.js ou o Angular CLI não estiverem instalados, consulte a documentação oficial para obter instruções de instalação adequadas ao seu sistema operacional.
+
+Navegue até o diretório do projeto Angular:
+
+
+cd meu-projeto-angular
+Instale as dependências:
+
+
+
+npm install
+Inicie o servidor de desenvolvimento:
+
+
+ng serve
+O servidor estará em execução em http://localhost:4200.
+
+Agora você pode acessar a API em http://localhost:8000 e o frontend em http://localhost:4200. Certifique-se de ter ambos os servidores em execução para aproveitar todas as funcionalidades do projeto.
